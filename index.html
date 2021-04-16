@@ -40,7 +40,7 @@ const main = runtime.module(notebook, name => {
 });
 
 // Redefine the “data” cell to use our CSV file (in the same format).
-// main.redefine("data", d3.csv("./cities.csv", d3.autoType));
+main.redefine("data", d3.csv("./category-brands.csv", d3.autoType));
 
 // Redefine the “k” cell to disable tweening between keyframes. (This dataset is
 // already interpolated.)
