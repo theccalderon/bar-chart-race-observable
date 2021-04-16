@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<title>Bar Chart Race</title>
+<style>
+
+:root {
+  --sans-serif: sans-serif;
+}
+
+body {
+  max-width: 960px;
+  margin: 1em auto;
+  font-family: var(--sans-serif);
+}
+
+a:link:not(:hover) {
+  text-decoration: none;
+}
+
+</style>
+<h1>Title: Put your title here</h1>
+<h2>Caption: some explanation about the graph</h2>
+<div name="viewof replay"></div>
+<div name="chart"></div>
+<script src="https://d3js.org/d3.v6.min.js"></script>
+<script type="module">
+
+import {Runtime, Library, Inspector} from "./runtime.js";
+import notebook from "./index.js";
+
+// Initialize the Observable Runtime
+const runtime = new Runtime();
+
+// Show the output of the “chart” and “viewof replay” cells in the DIV elements
+// with the corresponding name.
+const main = runtime.module(notebook, name => {
+  if (["chart", "viewof replay"].includes(name)) {
+    return new Inspector(document.querySelector(`[name='${name}']`));
+  }
+});
+
+// Redefine the “data” cell to use our CSV file (in the same format).
+// main.redefine("data", d3.csv("./cities.csv", d3.autoType));
+
+// Redefine the “k” cell to disable tweening between keyframes. (This dataset is
+// already interpolated.)
+// main.redefine("k", 1);
+
+</script>
